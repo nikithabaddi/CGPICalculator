@@ -15,10 +15,10 @@ const Login = () => {
         axios.post( 'http://localhost:3001/login', {email, password})
         .then(result => {
             console.log(result);
-            if(result.data === "Success"){
+            if(result.data.status === "success"){
                 console.log("Login Success");
                 alert('Login successful!')
-                navigate('/home');
+                navigate("/home", { state: { userId: result.data.userId } });
             }
             else{
                 alert('Incorrect password! Please try again.');
@@ -62,7 +62,6 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn btn-primary">Login</button>
                     </form>
-                    {/* TO add ' appostopee */}
                     <p className='container my-2'>Don&apos;t have an account?</p>
                     <Link to='/register' className="btn btn-secondary">Register</Link>
                 </div>
